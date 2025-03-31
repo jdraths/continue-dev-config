@@ -1,0 +1,63 @@
+%YAML 1.1
+---
+name: sample_with_api_keys
+version: 0.0.1
+schema: v1
+
+# api keys
+environment:
+  anthropic_api_key: &anthropic_api_key
+    apiKey: someKey
+  openai_api_key: &openai_api_key
+    apiKey: someKey2
+
+models:
+  - name: Claude 3.5 Haiku
+    cacheBehavior:
+      cacheSystemMessage: true
+      cacheConversation: true
+    model: claude-3-5-haiku-latest
+    provider: anthropic
+    <<: *anthropic_api_key
+    roles:
+      - chat
+      - edit
+      - apply
+
+  - name: OpenAI GPT-4o
+    cacheBehavior:
+      cacheSystemMessage: true
+      cacheConversation: true
+    model: gpt-4o
+    provider: openai
+    <<: *openai_api_key
+    roles:
+      - chat
+      - edit
+      - apply
+
+  - name: Tab Autocomplete Model
+    provider: ollama
+    model: qwen2.5-coder:1.5b
+    roles:
+      - autocomplete
+
+  - name: Nomic Embedder
+    provider: ollama
+    model: nomic-embed-text
+    roles:
+      - embed
+
+context:
+  - provider: code
+  - provider: docs
+  - provider: diff
+  - provider: terminal
+  - provider: problems
+  - provider: folder
+  - provider: codebase
+  
+rules:
+  - Give concise responses
+  - Assume I am knowledgable about most programming topics.
+  - Always assume TypeScript rather than JavaScript
