@@ -24,6 +24,18 @@ models:
       - edit
       - apply
 
+  - name: Claude 3.7 Sonnet
+    cacheBehavior:
+      cacheSystemMessage: true
+      cacheConversation: true
+    model: claude-3-7-sonnet-latest
+    provider: anthropic
+    <<: *anthropic_api_key
+    roles:
+      - chat
+      - edit
+      - apply
+
   - name: OpenAI GPT-4o
     cacheBehavior:
       cacheSystemMessage: true
