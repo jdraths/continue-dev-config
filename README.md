@@ -2,6 +2,8 @@
 
 a basic no-frills sample config for continue.
 
+very closely adheres to [continue's docs](https://docs.continue.dev/reference#using-yaml-anchors-to-avoid-config-duplication)
+
 ## Pre-requisites
 
 1. get api keys from openai & anthropic
